@@ -22,7 +22,7 @@ pub fn from_str(datetime_str: &str) -> DateTime<Local> {
     let hour = if let Ok(v) = h_m_s[0].parse::<u32>() { v } else { 1 };
     let minute = if let Ok(v) = h_m_s[1].parse::<u32>() { v } else { 1 };
     let second = if let Ok(v) = h_m_s[2].parse::<u32>() { v } else { 1 };
-    Local.ymd(year, month, day).and_hms(hour, minute, second)
+    Local.with_ymd_and_hms(year, month, day, hour, minute, second).unwrap()
 }
 
 /// Current time string
@@ -62,6 +62,6 @@ pub fn date() -> (u32, u32, u32) {
 /// Convert time stamps into date time format
 #[inline]
 pub fn datetime(timestamp: i64) -> String { 
-    let dt = NaiveDateTime::from_timestamp(timestamp, 0);
+    let dt = NaiveDateTime::from_timestamp_opt(timestamp, 0).unwrap();
     dt.format("%Y-%m-%d %H:%M:%S").to_string()
 }

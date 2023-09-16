@@ -1,6 +1,6 @@
-use actix_web::{web};
-use mysql::{Pool};
-use std::sync::{Mutex};
+use actix_web::web;
+use mysql::Pool;
+use std::sync::Mutex;
 use serde_derive::{Deserialize, Serialize};
 
 pub type Db = web::Data<Mutex<Pool>>;

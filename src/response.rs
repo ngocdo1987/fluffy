@@ -1,6 +1,6 @@
 use actix_web::{HttpResponse, http::header};
-use serde_derive::{Serialize};
-use serde::{ser};
+use serde_derive::Serialize;
+use serde::ser;
 
 #[derive(Serialize)]
 pub struct JsonOK {
@@ -55,5 +55,5 @@ pub fn result<T: ser::Serialize>(result: &T) -> HttpResponse {
 
 /// Page redirection
 pub fn redirect(url: &str) -> HttpResponse { 
-    HttpResponse::Found().header(header::LOCATION, url).finish()   
+    HttpResponse::Found().append_header((header::LOCATION, url)).finish()   
 }
