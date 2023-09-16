@@ -1,9 +1,10 @@
-use actix_web::{HttpRequest};
+use actix_web::HttpRequest;
 use crate::cond_builder::CondBuilder;
 
 const LIMIT: u32 = 15;
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct QueryBuilder<'a> { 
     pub table_name: &'a str,
     pub fields: &'a str,
